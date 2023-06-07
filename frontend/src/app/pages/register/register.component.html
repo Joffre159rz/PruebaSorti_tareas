@@ -1,0 +1,42 @@
+<div class=" d-flex justify-content-center align-items-center vh-100">
+    <div class="bg-white p-5 rounded-5 text-secondary shadow" style="width: 25rem">
+        <div class="d-flex justify-content-center">
+            <img src="/assets/img/agregar-usuario.png" alt="login-icon" style="height: 7rem" />
+        </div>
+        <div class="text-center fs-1 fw-bold">Register</div>
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+            <div class="input-group mt-4">
+                <div class="input-group-text bg-info">
+                    <img src="/assets/img/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                </div>
+                <input id="nombre" name="nombre" required class="form-control bg-light" type="text" [(ngModel)]="user.nombre" placeholder="Nombre" />
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text bg-info">
+                    <img src="/assets/img/telefono.png" alt="username-icon" style="height: 1rem" />
+                </div>
+                <input id="telefono" name="telefono" required class="form-control bg-light" [(ngModel)]="user.telefono" type="tel" placeholder="Telefono" />
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text bg-info">
+                    <img src="/assets/img/correo-electronico-vacio.png" alt="username-icon" style="height: 1rem" />
+                </div>
+                <input id="email" name="email" required class="form-control bg-light" type="email" [(ngModel)]="user.email" placeholder="Email" />
+            </div>
+            
+            <div class="input-group mt-1">
+                <div class="input-group-text bg-info">
+                    <img src="/assets/img/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                </div>
+                <input id="password" name="password"  required class="form-control bg-light" type="password" [(ngModel)]="user.password" placeholder="Password" />
+            </div>
+            <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
+                <button type="submit" class="btn btn-info text-white" >Registrarse</button>
+            </div>
+        </form>
+        <div class="d-flex gap-1 justify-content-center mt-1">
+            <div>Ya tienes una cuenta?</div>
+            <a href="" class="text-decoration-none text-info fw-semibold" >Inicia Sesion</a>
+        </div>
+    </div>
+</div>

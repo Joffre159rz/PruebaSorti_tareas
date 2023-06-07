@@ -1,0 +1,30 @@
+<div class="side-nav-content">
+
+    <div class="mb-4 text-center">
+        <img src="../../../../assets/img/admin.png" style="background-color: white;" class="user-img">
+        <h4 class="mt-2 fw-bold">{{identity.nombre}}</h4>
+        <p>{{identity.email}}</p>
+    </div>
+
+    <ul class="nav-list">
+
+        <li class="nav-list-item" routerLinkActive="sidebar-item-active">
+            <i class="fa fa-tasks"></i>
+            <span>
+                <a routerLink="/tasks">Tareas</a>
+            </span>
+        </li>
+        <li class="nav-list-item mt-3" routerLinkActive="sidebar-item-active">
+            <i class="fa-solid fa-trash"></i>
+            <span>
+                <a routerLink="/trash">Papelera</a>
+            </span>
+        </li>
+        <li class="nav-list-item mt-3">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>
+                <a href="" (click)="logout()">Cerrar Sesión</a>
+            </span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Nunito Sans', sans-serif;
+}
+
+app-sidebar {
+    position: absolute;
+    left: 0rem;
+    width: 250px;
+    height: calc(108.8vh - 3.8rem);
+    background-color: #0dcaf0cb;
+}
+
+.display-area {
+    position: absolute;
+    left: 250px;
+    padding-left: 27.5px;
+    width: calc(100% - 280px);
+}
+
+a{
+  cursor: pointer;
+}

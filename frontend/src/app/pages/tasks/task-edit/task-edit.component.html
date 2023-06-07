@@ -1,0 +1,56 @@
+<div class="container-fluid g-0">
+
+    <app-sidebar></app-sidebar>
+
+    <div class="display-area">
+
+        <main class="content mt-5">
+            <div class="container-fluid">
+                <div class="header">
+                    <h1 class="header-title">
+                        Registro de tareas
+                    </h1>
+                </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/tasks">Tarea</a></li>
+                        <li class="breadcrumb-item active"><a href="/tasks/registrar">Registro de Tarea</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <div class="card">
+                        <div class="card-header bg-info" style="color: #fff;">
+                            <h5 class="card-title">Rellene el formulario</h5>
+                            <h6 class="card-subtitle text muted">Tareas.</h6>
+                        </div>
+                        <div class="card-body">
+                            <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="formulario" id="formulario">
+                                <div class="row">
+                                    <!-- GRUPO TITULO -->
+                                    <div class="col-lg-5 formulario_grupo" id="grupo_titulo">
+                                        <label class="form label">Título de la tarea</label>
+                                        <div class="form-group formulario__grupo-input">
+                                            <input type="text" class="form-control mt-2 formulario__input" id="titulo" placeholder="Titulo de la tarea" #titulo="ngModel" name="titulo" [(ngModel)]="task.titulo" required>
+                                        </div>
+                                    </div>
+                                    <!-- GRUPO DESCRIPCION -->
+                                    <div class="col-lg-10 formulario_grupo" id="grupo_problema">
+                                        <label class="form label">Descripción de la tarea</label>
+                                        <div class="form-group formulario__grupo-input">
+                                            <textarea type="text" class="form-control mt-2 formulario__input" id="descripcion" placeholder="Descripción de la tarea" #descripcion="ngModel" name="descripcion" [(ngModel)]="task.descripcion" required></textarea>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</div>
