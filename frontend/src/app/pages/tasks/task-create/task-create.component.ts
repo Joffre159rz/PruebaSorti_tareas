@@ -36,38 +36,44 @@ export class TaskCreateComponent implements OnInit {
   }
 
   onSubmit(taskForm:any){
-    if(taskForm.valid){
+    this.identity = this._userService.getIdentity();
+    if (this.identity.nombre) {
+      if(taskForm.valid){
 
-      this._taskService.post_task({
-        titulo: taskForm.value.titulo,
-        descripcion: taskForm.value.descripcion,
-        estado:"no completado",
-        UserId: this.identity.id,
-      }).subscribe(
-        response => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Tarea creada correctamente!',
-            footer: '<p>JJRZ</p>',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.task = new task('', '', '', '',1)
-          this.router.navigate(['tasks'])
-        },
-        error => {
-
-        }
-      )
-
+        this._taskService.post_task({
+          titulo: taskForm.value.titulo,
+          descripcion: taskForm.value.descripcion,
+          estado:"no completado",
+          UserId: this.identity.id,
+        }).subscribe(
+          response => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Tarea creada correctamente!',
+              footer: '<p>JJRZ</p>',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.task = new task('', '', '', '',1)
+            this.router.navigate(['tasks'])
+          },
+          error => {
+  
+          }
+        )
+  
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Algo salió mal!',
+          text: 'Rellena todos los campos del formulario!',
+          footer: '<p>JJRZ</p>'
+        })
+      }
     }else{
-      Swal.fire({
-        icon: 'error',
-        title: 'Algo salió mal!',
-        text: 'Rellena todos los campos del formulario!',
-        footer: '<p>JJRZ</p>'
-      })
-    }
+      this.router.navigate(['']);
+    }
+    
   }
 }

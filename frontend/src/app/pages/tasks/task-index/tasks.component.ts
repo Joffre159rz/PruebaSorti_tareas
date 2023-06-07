@@ -20,7 +20,6 @@ export class TasksComponent implements OnInit {
     private _router: Router
   ) { 
     this.identity = this._userService.getIdentity();
-
   }
 
   ngOnInit(): void {
@@ -53,66 +52,78 @@ export class TasksComponent implements OnInit {
             estado:"completado"
           }
         }
-        this._taskService.putState_task(this.asd).subscribe(
-          response=>{
-            console.log("estado actualizado revisar en la base de datos");
-            this.consulta();
-          })
+        this.identity = this._userService.getIdentity()
+        if (this.identity.nombre) {
+          this._taskService.putState_task(this.asd).subscribe(
+            response=>{
+              this.consulta()
+              console.log("estado actualizado revisar en la base de datos");
+            })
+        }else{
+          this._router.navigate(['']);
+        }
+        
       })
     
   }
   desecharTask(id:any){
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success mx-3',
-        cancelButton: 'btn btn-danger mx-3'
-      },
-      buttonsStyling: false
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: '¿Seguro quieres desechar la Tarea?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Si, desechar!',
-      cancelButtonText: 'No, cancelar!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Eliminado!',
-          'La tarea fue desechada correctamente.',
-          'success'
-        )
-        this.asd={
-          id:id,
-          estado:"desechado"
-        }
-        this._taskService.putState_task(this.asd).subscribe(
-          response => {
-            this._taskService.get_tasksByUser(this.identity.id).subscribe(
-              response => {
-                this.tasks = response.task;
-              },
-              error => {
-
+    this.identity = this._userService.getIdentity()
+        if (this.identity.nombre) {
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success mx-3',
+              cancelButton: 'btn btn-danger mx-3'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: '¿Seguro quieres desechar la Tarea?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, desechar!',
+            cancelButtonText: 'No, cancelar!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              swalWithBootstrapButtons.fire(
+                'Desechada!',
+                'La tarea fue desechada correctamente.',
+                'success'
+              )
+              this.asd={
+                id:id,
+                estado:"desechado"
               }
-            )
-          },
-          error => {
-          }
-        )
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelado',
-          'Se canceló la petición',
-          'error'
-        )
-      }
-    })
+                this._taskService.putState_task(this.asd).subscribe(
+                  response => {
+                    this._taskService.get_tasksByUser(this.identity.id).subscribe(
+                      response => {
+                        this.tasks = response.task;
+                      },
+                      error => {
+        
+                      }
+                    )
+                  },
+                  error => {
+                  }
+                )
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'Se canceló la petición',
+                'error'
+              )
+            }
+          })
+        }else{
+          this._router.navigate(['']);
+        }
+    
   }
 
 }

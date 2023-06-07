@@ -117,7 +117,7 @@ async function forgotpassword(req,res){
                 from:process.env.EMAIL,
                 to:usuario.email,
                 subject:"Contraseña para sistemas de tareas:",
-                html:'<p><b> Tu detalles para iniciar secion en el sistema de tareas</b><br><b>Email:</b>'+usuario.email+'<br><b>Contraseña:</b>'+usuario.password+'<br><a href="https://localhost:4200">Click para ingresar</a> </p>'
+                html:'<p><b> Tu detalles para iniciar secion en el sistema de tareas</b><br><b>Email:</b>'+usuario.email+'<br><b>Contraseña:</b>'+usuario.password+'<br><a href="http://localhost:4200">Click para ingresar</a> </p>'
             };
             trasnporter.sendMail(mailOptions,(error, info)=>{
                 if (error) {
