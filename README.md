@@ -43,6 +43,6 @@ Para iniciar el servidor del frontend, utiliza el siguiente comando:
 ```
 O en su defecto
 ```bash
-  ng serve
+  ng s
 ```
 El servidor del frontend se ejecutará en http://localhost:4200.
